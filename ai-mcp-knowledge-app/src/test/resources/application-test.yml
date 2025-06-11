@@ -1,0 +1,21 @@
+server:
+  port: 8092
+
+spring:
+  ai:
+    mcp:
+      client:
+        enabled: false
+    deepseek:
+      base-url: https://api.deepseek.com
+      api-key: sk-b5bf7dcdb58942f08ff354ace1085fe4
+      model: deepseek-chat
+      embedding-model: ntext-embedding-ada-003
+      embedding:
+        options:
+          num-batch: 1536
+
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml 

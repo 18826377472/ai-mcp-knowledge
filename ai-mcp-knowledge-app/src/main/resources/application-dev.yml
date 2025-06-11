@@ -1,0 +1,48 @@
+server:
+  port: 8092
+
+spring:
+#  main:
+#    web-application-type: none
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://117.72.200.102:15432/ai-rag-knowledge
+    type: com.zaxxer.hikari.HikariDataSource
+  ai:
+    mcp:
+      client:
+        request-timeout: 360s
+        stdio:
+          servers-configuration: classpath:/config/mcp-servers-config.json
+    openai:
+      base-url: https://apis.itedus.cn
+      api-key: sk-n3fG89HM0BldyL2X93957025157c4c12A4D23e3251E5D1E2
+      chat:
+        options:
+          model: gpt-4o
+      embedding-model: text-embedding-ada-002
+      embedding:
+        options:
+          num-batch: 1536
+    ollama:
+      base-url: http://58a39caa684c41bf9bed-deepseek-r1-llm-api.gcs-xy1a.jdcloud.com/
+      mode:
+      embedding-model: nomic-embed-text
+      embedding:
+        options:
+          num-batch: 768
+    deepseek:
+      base-url: https://api.deepseek.com
+      api-key: sk-b5bf7dcdb58942f08ff354ace1085fe4
+      model: deepseek-chat
+      embedding-model: ntext-embedding-ada-003
+      embedding:
+        options:
+          num-batch: 1536
+
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml
