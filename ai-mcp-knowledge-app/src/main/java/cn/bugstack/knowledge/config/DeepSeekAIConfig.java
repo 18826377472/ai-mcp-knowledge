@@ -4,6 +4,8 @@ import io.micrometer.observation.ObservationRegistry;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.DefaultChatClientBuilder;
 import org.springframework.ai.chat.client.observation.ChatClientObservationConvention;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiEmbeddingModel;
 import org.springframework.ai.openai.api.OpenAiApi;
@@ -66,6 +68,11 @@ public class DeepSeekAIConfig {
     @Bean("deepSeekChatClientBuilder")
     public ChatClient.Builder deepSeekChatClientBuilder(OpenAiChatModel deepSeekChatModel) {
         return new DefaultChatClientBuilder(deepSeekChatModel, ObservationRegistry.NOOP, (ChatClientObservationConvention) null);
+    }
+
+    @Bean
+    public ChatMemory chatMemory() {
+        return new InMemoryChatMemory();
     }
 
 } 
